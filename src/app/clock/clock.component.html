@@ -1,0 +1,16 @@
+<div style="align-items: center;">
+    <div [ngClass]="{'day' : ligthMode,'night' : !ligthMode }">
+        <div>{{date}}</div>
+    </div>
+
+    <div class="btn-group">
+        <button class = "button" style="position:relative" (click)="onClickMode()">MODE</button>
+        <button class = "button" [disabled]="!displayOptions" (click)="onAdd()">+</button>
+        <button class = "button" (click)="onLight()">LIGHT</button>
+        <button class = "button" (click)="onReset()">RESET</button>
+    </div>
+</div>
+
+
+
+
