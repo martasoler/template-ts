@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { Component } from '@angular/core';
 
 @Component({
@@ -21,6 +22,7 @@ export class ClockComponent {
   displayOptions : Boolean = false;
   modeCount : number = 0;
   ligthMode: Boolean = false;
+  format24: Boolean = false;
 
   /**
    * Set an interval to display the current time, check it every second
@@ -28,7 +30,7 @@ export class ClockComponent {
   ngOnInit(){
      this.interval = setInterval(() => {
       const currentDate = new Date();
-      this.date = currentDate.toLocaleTimeString();
+      this.date = currentDate
     }, 1000); //ms
   }
 
@@ -58,7 +60,7 @@ export class ClockComponent {
       currentDate.setHours(
         currentDate.getHours()+this.hoursAdd, 
         currentDate.getMinutes()+this.minutesAdd)
-      this.date = currentDate.toLocaleTimeString();
+      this.date = currentDate;
     }, 1000);
 
   }
@@ -91,11 +93,20 @@ export class ClockComponent {
     clearInterval(this.interval)
     this.interval = setInterval(() => {
       const currentDate = new Date();
-      this.date = currentDate.toLocaleTimeString();
+      this.date = currentDate;
     }, 1000);
 
     // Reset variables
     this.hoursAdd = 0;
     this.minutesAdd = 0;
+  }
+
+  /**
+   * Action when button 'FORMAT is clicked
+   * Updates the boolean format24 mode
+   */
+  onFormat():void{
+    console.log("on format")
+    this.format24 = !this.format24;
   }
 }

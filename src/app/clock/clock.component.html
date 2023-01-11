@@ -1,14 +1,21 @@
 <div style="align-items: center;">
     <!-- DATE -->
-    <div [ngClass]="{'day' : ligthMode,'night' : !ligthMode }">
-        <div>{{date}}</div>
-    </div>
+    <div  *ngIf="format24; then Mode else AMMode"></div>
+    <ng-template #AMMode >
+        <div [ngClass]="{'day' : ligthMode,'night' : !ligthMode }">{{ date | date : 'mediumTime'}}</div>
+    </ng-template>
+
+    <ng-template #Mode>
+        <div [ngClass]="{'day' : ligthMode,'night' : !ligthMode }">{{ date | date : 'HH:mm:ss'}}</div>
+    </ng-template>
+
     <!-- BUTTONS -->
     <div class="btn-group">
         <button class = "button" style="position:relative" (click)="onClickMode()">MODE</button>
         <button class = "button" [disabled]="!displayOptions" (click)="onAdd()">+</button>
         <button class = "button" (click)="onLight()">LIGHT</button>
         <button class = "button" (click)="onReset()">RESET</button>
+        <button class = "button" (click)="onFormat()">FORMAT</button>
     </div>
 </div>
 
