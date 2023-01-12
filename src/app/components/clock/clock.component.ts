@@ -1,5 +1,5 @@
 import { formatDate } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-clock',
@@ -10,6 +10,10 @@ export class ClockComponent {
 
   // Displayed date
   date: any;
+
+  @Input() timezone : string | undefined = 'GMT +1';
+  @Input() format24: Boolean | undefined= false;
+  @Input() name: string | undefined = '';
 
   // User's time to add
   hoursAdd: number = 0;
@@ -22,7 +26,7 @@ export class ClockComponent {
   displayOptions : Boolean = false;
   modeCount : number = 0;
   ligthMode: Boolean = false;
-  format24: Boolean = false;
+  
 
   /**
    * Set an interval to display the current time, check it every second

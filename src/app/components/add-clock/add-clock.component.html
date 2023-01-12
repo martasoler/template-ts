@@ -1,0 +1,24 @@
+<input type="text" pInputText [(ngModel)]="clockName"/>
+
+<p-dropdown 
+    [options]="timezones"
+    [(ngModel)]="selectedTimezone"
+    optionLabel="description" optionValue="timezone"
+    appendTo="body"
+    placeholder="  ">
+</p-dropdown>
+
+<div class="p-field-checkbox">
+    <p-checkbox [(ngModel)]="format24" [binary]=true inputId="binary"></p-checkbox>
+    <label for="binary">FORMAT 24H</label>
+</div>
+
+<div class="p-field p-col-12 button" style="justify-content: flex-end;">
+    <td>
+        <p-button (click)="onSave()" icon="pi pi-check" label="Save">
+    </p-button>
+    </td>
+</div>
+
+
+

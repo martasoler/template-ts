@@ -1,0 +1,19 @@
+
+<div class="btn-group">
+        <button class = "button" (click)="onNewClock()">NEW CLOCK</button>
+</div>
+
+<p-dialog header="New Clock" [(visible)]="displayNew" [draggable]="true" [resizable]="true">
+    <app-add-clock 
+    *ngIf="displayNew"
+    [nextClockId]="this.multipleClocks.length" 
+    (newClock)="onSaveNewClock($event)"
+   ></app-add-clock>
+</p-dialog>
+
+<app-clock
+  *ngFor="let clock of multipleClocks"
+  [timezone]="clock?.timezone"
+  [format24]="clock?.format24"
+  [name]="clock?.name"
+></app-clock>
