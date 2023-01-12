@@ -14,6 +14,9 @@ import {InputTextModule} from 'primeng/inputtext';
 import {CheckboxModule} from 'primeng/checkbox';
 import {ButtonModule} from 'primeng/button';
 import {DropdownModule} from 'primeng/dropdown';
+import {CardModule} from 'primeng/card';
+
+
 
 @NgModule({
   declarations: [
@@ -31,7 +34,8 @@ import {DropdownModule} from 'primeng/dropdown';
     ButtonModule,
     DialogModule,
     InputTextModule,
-    CheckboxModule
+    CheckboxModule,
+    CardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

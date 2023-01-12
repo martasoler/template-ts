@@ -1,31 +1,44 @@
-<div style="align-items: center;">
+<div class="clockContainer">
+    <!-- Top button group (Reset-Format-Ligt) -->
+    <div class="p-field p-grid buttonGroup">
+        <button type="button" (click)="onReset()" label="RESET"
+            style="font-size: 11px; padding: 0.25rem 1rem; margin: 0.25rem;" pButton>
+        </button>
 
-    {{name}}
+        <button type="button" (click)="onFormat()" label="FORMAT"
+            style="font-size: 11px; padding: 0.25rem 1rem; margin: 0.25rem;" pButton>
+        </button>
 
-    <!-- DATE -->
-    <div  *ngIf="format24; then Mode else AMMode"></div>
-    <ng-template #AMMode >
-        <div [ngClass]="{'day' : ligthMode,'night' : !ligthMode }">
-            {{ date | date : 'mediumTime' : timezone}}
-        </div>
-    </ng-template>
+        <button type="button" icon="pi pi-sun" (click)="onLight()"
+            style="font-size: 11px; padding: 0.25rem 1rem; margin: 0.25rem;" pButton>
+        </button>
+    </div>
 
-    <ng-template #Mode>
-        <div [ngClass]="{'day' : ligthMode,'night' : !ligthMode }">
-            {{ date | date : 'HH:mm:ss' : timezone}}
-        </div>
-    </ng-template>
+    <!-- Time with different formats using templates -->
+    <div class="p-field p-grid">
+        <div *ngIf="format24; then Mode else AMMode"></div>
+        <ng-template #AMMode>
+            <div [ngClass]="{'day' : ligthMode,'night' : !ligthMode }">
+                {{ date | date : 'mediumTime' : timezone}}
+            </div>
+        </ng-template>
 
-    <!-- BUTTONS -->
-    <div>
-        <button style="position:relative" (click)="onClickMode()">MODE</button>
-        <button [disabled]="!displayOptions" (click)="onAdd()">+</button>
-        <button (click)="onLight()">LIGHT</button>
-        <button (click)="onReset()">RESET</button>
-        <button (click)="onFormat()">FORMAT</button>
+        <ng-template #Mode>
+            <div [ngClass]="{'day' : ligthMode,'night' : !ligthMode }">
+                {{ date | date : 'HH:mm:ss' : timezone}}
+            </div>
+        </ng-template>
+
+    </div>
+
+    <!-- Bottom button group (Mode-(+)-Clock name) -->
+    <div class="p-field p-grid buttonGroup">
+        <button type="button" (click)="onClickMode()" label="MODE"
+            style="font-size: 11px; padding: 0.25rem 1rem; margin: 0.25rem;" pButton>
+        </button>
+        <button type="button" icon="pi pi-plus" [disabled]="!displayOptions" (click)="onAdd()"
+            style="font-size: 11px; padding: 0.25rem 1rem; margin: 0.25rem;" pButton>
+        </button>
+        <div style="font-size: 11px; color: white;">{{name}}</div>
     </div>
 </div>
-
-
-
-

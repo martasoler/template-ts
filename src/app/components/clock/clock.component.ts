@@ -44,21 +44,26 @@ export class ClockComponent {
    * 
    */
   onAdd():void{
-    console.log("on add")
     this.modeCount = this.modeCount + 1;
 
     if (this.modeCount == 1){
       this.hoursAdd  = this.hoursAdd + 1;
+      this.restartInterval()
     } else if (this.modeCount == 2){
       this.minutesAdd  = this.minutesAdd + 1;
+      this.restartInterval()
     } else { 
       this.displayOptions = false; // Disable '+' button
       this.modeCount = 0; // Restart count
     }
+  }
 
-    clearInterval(this.interval); // Clear current interval
-
-    // Start a new interval adding the hous and minutes
+  /**
+   * Clears current interval and starts a new interval adding the hous and minutes
+   */
+  private restartInterval(){
+    clearInterval(this.interval);
+    
     this.interval = setInterval(() => { 
       const currentDate = new Date();
       currentDate.setHours(
@@ -66,14 +71,12 @@ export class ClockComponent {
         currentDate.getMinutes()+this.minutesAdd)
       this.date = currentDate;
     }, 1000);
-
   }
 
   /**
    * Action when button 'MODE' is clicked
    */
   onClickMode():void{
-    console.log("on mode")
      if (this.modeCount == 0){ // Control it's the first time
        this.displayOptions = true; // Enable '+' button
      }
@@ -84,7 +87,6 @@ export class ClockComponent {
     * Updates the boolean ligth mode
     */
    onLight():void{
-    console.log("on light")
     this.ligthMode = !this.ligthMode;
   }
 
@@ -93,7 +95,6 @@ export class ClockComponent {
    * Displays current date
    */
   onReset(): void{
-    console.log("on reset")
     clearInterval(this.interval)
     this.interval = setInterval(() => {
       const currentDate = new Date();
@@ -110,7 +111,6 @@ export class ClockComponent {
    * Updates the boolean format24 mode
    */
   onFormat():void{
-    console.log("on format")
     this.format24 = !this.format24;
   }
 }

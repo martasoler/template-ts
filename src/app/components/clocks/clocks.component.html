@@ -1,19 +1,25 @@
 
-<div class="btn-group">
-        <button class = "button" (click)="onNewClock()">NEW CLOCK</button>
+<!-- New button component -->
+<button type="button" (click)="onNewClock()" label = "NEW CLOCK"  pButton>
+</button>
+
+<div><br/></div>
+
+<!-- We call the app-clock component for each component of the multipleClocks array -->
+<div class="p-field p-grid clocksContainer">
+  <app-clock
+    *ngFor="let clock of multipleClocks"
+    [timezone]="clock?.timezone"
+    [format24]="clock?.format24"
+    [name]="clock?.name"
+  ></app-clock>
 </div>
 
-<p-dialog header="New Clock" [(visible)]="displayNew" [draggable]="true" [resizable]="true">
-    <app-add-clock 
+<!-- Pop-up dialog displayed when button new clock is clicked -->
+<p-dialog header="Configure a new clock" [(visible)]="displayNew" [draggable]="true" [resizable]="true">
+  <app-add-clock 
     *ngIf="displayNew"
     [nextClockId]="this.multipleClocks.length" 
     (newClock)="onSaveNewClock($event)"
-   ></app-add-clock>
+ ></app-add-clock>
 </p-dialog>
-
-<app-clock
-  *ngFor="let clock of multipleClocks"
-  [timezone]="clock?.timezone"
-  [format24]="clock?.format24"
-  [name]="clock?.name"
-></app-clock>

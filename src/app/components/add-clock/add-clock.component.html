@@ -1,24 +1,27 @@
-<input type="text" pInputText [(ngModel)]="clockName"/>
+<p-card>
+    <!-- Form for name, timezone and format -->
+    <div class="p-fluid p-formgrid p-grid">
+        <div class="p-field p-col">
+            <label for="name" style="font-weight:bold;">Enter a name for your clock</label>
+            <input id="name" type="text" pInputText [(ngModel)]="clockName" />
+        </div>
+        <br />
+        <div class="p-field p-col">
+            <label for="tz" style="font-weight:bold;">Choose a timezone</label>
+            <p-dropdown id="tz" [options]="timezones" [(ngModel)]="selectedTimezone" optionLabel="description"
+                optionValue="timezone" appendTo="body" placeholder="">
+            </p-dropdown>
+        </div>
+        <br />
+        <div class="p-field-checkbox">
+            <label for="fr" style="font-weight:bold;">Display time in 24h format </label>
+            <p-checkbox id="fr" [(ngModel)]="format24" [binary]=true inputId="binary"></p-checkbox>
+        </div>
+    </div>
 
-<p-dropdown 
-    [options]="timezones"
-    [(ngModel)]="selectedTimezone"
-    optionLabel="description" optionValue="timezone"
-    appendTo="body"
-    placeholder="  ">
-</p-dropdown>
-
-<div class="p-field-checkbox">
-    <p-checkbox [(ngModel)]="format24" [binary]=true inputId="binary"></p-checkbox>
-    <label for="binary">FORMAT 24H</label>
-</div>
-
-<div class="p-field p-col-12 button" style="justify-content: flex-end;">
-    <td>
+    <!-- Save button -->
+    <ng-template pTemplate="footer">
         <p-button (click)="onSave()" icon="pi pi-check" label="Save">
-    </p-button>
-    </td>
-</div>
-
-
-
+        </p-button>
+    </ng-template>
+</p-card>
