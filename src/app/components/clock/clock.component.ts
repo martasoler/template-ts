@@ -40,22 +40,17 @@ export class ClockComponent {
 
   /**
    * Action when '+' is clicked. 
-   * It will increase the hours or the minutes depending on the numbers of times it has been clicked.
+   * It will increase the hours or the minutes depending on the mode number of clicks.
    * 
    */
   onAdd():void{
-    this.modeCount = this.modeCount + 1;
-
     if (this.modeCount == 1){
       this.hoursAdd  = this.hoursAdd + 1;
       this.restartInterval()
     } else if (this.modeCount == 2){
       this.minutesAdd  = this.minutesAdd + 1;
       this.restartInterval()
-    } else { 
-      this.displayOptions = false; // Disable '+' button
-      this.modeCount = 0; // Restart count
-    }
+    } 
   }
 
   /**
@@ -77,8 +72,12 @@ export class ClockComponent {
    * Action when button 'MODE' is clicked
    */
   onClickMode():void{
-     if (this.modeCount == 0){ // Control it's the first time
-       this.displayOptions = true; // Enable '+' button
+    this.modeCount = this.modeCount + 1;
+     if (this.modeCount == 1){ // Control it's the first time
+        this.displayOptions = true; // Enable '+' button
+     } else if (this.modeCount == 3){
+        this.displayOptions = false; // Disable '+' button
+        this.modeCount = 0; // Restart count
      }
    }
 
@@ -104,6 +103,7 @@ export class ClockComponent {
     // Reset variables
     this.hoursAdd = 0;
     this.minutesAdd = 0;
+    this.modeCount = 0;
   }
 
   /**
